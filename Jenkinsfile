@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "<dockerhub-username>/trend-app"
+        IMAGE_NAME = "kantimati/trend-app"
     }
 
     stages {
 
         stage('Clone Code') {
             steps {
-                git 'https://github.com/<your-username>/Trend.git'
+                git 'https://github.com/Kantimati1193/TrendStoreApp.git'
             }
         }
 
