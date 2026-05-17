@@ -33,10 +33,16 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
-            }
-        }
+    steps {
+        sh '''
+        export AWS_SHARED_CREDENTIALS_FILE=/var/lib/jenkins/.aws/credentials
+        export AWS_CONFIG_FILE=/var/lib/jenkins/.aws/config
+        export KUBECONFIG=/var/lib/jenkins/.kube/config
+
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
+        '''
+    }
+}
     }
 }
